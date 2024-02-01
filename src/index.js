@@ -6,7 +6,7 @@ function formatWeather(weatherObject) {
         tempF: weatherObject.current.temp_f,
         country: weatherObject.location.country,
         city: weatherObject.location.name,
-        time: weatherObject.location.localtime,
+        date: weatherObject.location.localtime,
     };
 }
 
