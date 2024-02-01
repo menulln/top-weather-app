@@ -1,3 +1,5 @@
+import './css/style.css';
+
 function formatWeather(weatherObject) {
     return {
         condition: { ...weatherObject.current.condition },
