@@ -16,5 +16,6 @@ async function getWeather(cityName) {
     );
 
     const weatherData = await response.json();
-    return weatherData;
+    const formattedWeather = formatWeather(weatherData);
+    return formattedWeather;
 }
