@@ -1,4 +1,5 @@
 import './css/style.css';
+import { format } from 'date-fns';
 
 function formatWeather(weatherObject) {
     return {
