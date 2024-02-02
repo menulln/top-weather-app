@@ -22,3 +22,29 @@ async function getWeather(cityName) {
     const formattedWeather = formatWeather(weatherData);
     return formattedWeather;
 }
+
+function displayWeather(weatherObject) {
+    const cityBtn = document.querySelector('.city');
+    const tempHeading = document.querySelector('.temp');
+    const conditionParagraph = document.querySelector('.condition');
+    const dateParagraph = document.querySelector('.date');
+
+    const formattedDate = format(
+        new Date(weatherObject.date),
+        'EEEE, io MMM yyyy | HH:mm'
+    );
+
+    cityBtn.textContent = weatherObject.city;
+    tempHeading.textContent = showTempInCelsius
+        ? weatherObject.tempC
+        : weatherObject.tempF;
+    conditionParagraph.textContent = weatherObject.condition.text;
+    dateParagraph.textContent = formattedDate;
+
+    tempHeading.classList.add(showTempInCelsius ? 'celsius' : 'fahrenheit');
+    tempHeading.classList.remove(showTempInCelsius ? 'fahrenheit' : 'celsius');
+
+    document.body.style.backgroundImage = weatherObject.isDay
+        ? `url('../src/images/day.png')`
+        : `url('../src/images/night.png')`;
+}
