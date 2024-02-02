@@ -19,7 +19,8 @@ function formatWeather(weatherObject) {
 
 async function getWeather(cityName) {
     const response = await fetch(
-        `http://api.weatherapi.com/v1/current.json?key=71cbb440aad5415f836161300242901&q=${cityName}`
+        `https://api.weatherapi.com/v1/current.json?key=8812f7ab30cc412484d125901240202&q=${cityName}`,
+        { mode: 'cors' }
     );
 
     const weatherData = await response.json();
