@@ -50,6 +50,15 @@ body::before {
     background-color: transparent;
 }
 
+.city::after {
+    font-family: "Font Awesome 5 Free";
+    font-weight: 900;
+    content: "\f044";
+    font-size: 1rem;
+    vertical-align: 50%;
+    margin-left: 5px;
+}
+
 .temp {
     font-size: 8rem;
 }
