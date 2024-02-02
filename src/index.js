@@ -1,6 +1,8 @@
 import './css/style.css';
 import { format } from 'date-fns';
 
+let showTempInCelsius = true;
+
 function formatWeather(weatherObject) {
     return {
         condition: { ...weatherObject.current.condition },
