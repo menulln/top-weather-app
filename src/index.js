@@ -48,3 +48,76 @@ function displayWeather(weatherObject) {
         ? `url('../src/images/day.png')`
         : `url('../src/images/night.png')`;
 }
+
+function displayAppLayout() {
+    const switchTempBtn = document.createElement('button');
+    const cityBtn = document.createElement('button');
+    const tempHeading = document.createElement('h1');
+    const conditionParagraph = document.createElement('p');
+    const dateParagraph = document.createElement('p');
+
+    switchTempBtn.classList.toggle('switch-temp');
+    cityBtn.classList.toggle('city');
+    tempHeading.classList.toggle('temp');
+    conditionParagraph.classList.toggle('condition');
+    dateParagraph.classList.toggle('date');
+
+    switchTempBtn.textContent = 'C';
+
+    document.body.appendChild(switchTempBtn);
+    document.body.appendChild(cityBtn);
+    document.body.appendChild(tempHeading);
+    document.body.appendChild(conditionParagraph);
+    document.body.appendChild(dateParagraph);
+
+    async function setDefaultWeather() {
+        const defaultWeather = await getWeather('garbsen');
+        displayWeather(defaultWeather);
+    }
+
+    setDefaultWeather();
+
+    switchTempBtn.addEventListener('click', async () => {
+        if (showTempInCelsius) {
+            showTempInCelsius = false;
+        } else {
+            showTempInCelsius = true;
+        }
+        switchTempBtn.textContent = showTempInCelsius ? 'C' : 'F';
+
+        const currentWeather = await getWeather(cityBtn.textContent);
+
+        displayWeather(currentWeather);
+    });
+
+    cityBtn.addEventListener('click', () => {
+        const dialog = document.createElement('dialog');
+        const cityInput = document.createElement('input');
+        const confirmBtn = document.createElement('button');
+        const cancelBtn = document.createElement('button');
+
+        confirmBtn.textContent = 'Change City';
+        cancelBtn.textContent = 'Cancel';
+
+        confirmBtn.addEventListener('click', async () => {
+            const weatherData = await getWeather(cityInput.value);
+            displayWeather(weatherData);
+
+            dialog.remove();
+        });
+
+        cancelBtn.addEventListener('click', () => {
+            dialog.remove();
+        });
+
+        dialog.appendChild(cityInput);
+        dialog.appendChild(confirmBtn);
+        dialog.appendChild(cancelBtn);
+
+        document.body.appendChild(dialog);
+
+        dialog.showModal();
+    });
+}
+
+displayAppLayout();
