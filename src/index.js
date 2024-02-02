@@ -1,3 +1,5 @@
+// TODO: Add Geolocation API to set the default city to the users location
+
 import './css/style.css';
 import { format } from 'date-fns';
 
